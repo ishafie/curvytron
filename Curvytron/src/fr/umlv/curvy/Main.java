@@ -5,76 +5,25 @@ import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
 import fr.umlv.zen5.*;
-public class Main {
-	
-	
-	  
 
-	public static void main(String[] args) {
-		double ROTATE = 0.10;
-		
-		Application.run(Color.BLACK, context -> {
-		      
-		      // get the size of the screen
-		      ScreenInfo screenInfo = context.getScreenInfo();
-		      float width = screenInfo.getWidth();
-		      float height = screenInfo.getHeight();
-		      System.out.println("size of the screen (" + width + " x " + height + ")");
-		      
-		      context.renderFrame(graphics -> {
-		        graphics.setColor(Color.BLACK);
-		        graphics.fill(new  Rectangle2D.Float(0, 0, width, height));
-		      });
-		      /* Position du cercle dans la fenetre */
-		      double posx = (int)width /2;
-		      double posy = (int)height /2;
-		      
-		      /* Direction du snake */
-		      double dirx = 1;
-		      double diry = 0 ;
-		      
-		      /* angle de la direction */
-		      double angle = 0;
-		      Area area = new Area();
-		      for(;;) {
-		        Event event = context.pollOrWaitEvent(10);
-		        if (event == null) {  // no event
-		          area.draw(context, (int)posx, (int)posy);
-		          posx = posx + dirx;
-		          posy = posy + diry;
-		          continue;
-		        }
-		        
-		        Event.Action action = event.getAction();
-		        KeyboardKey key = event.getKey();
-
-		        if (action == Event.Action.KEY_PRESSED && key == KeyboardKey.Q){
-		        	dirx =  Math.cos(angle - ROTATE);
-		        	diry = Math.sin(angle - ROTATE);
-		        	angle = angle - ROTATE;
-		        }
-		        
-		        if (action == Event.Action.KEY_PRESSED && key == KeyboardKey.D){
-		        	dirx =  Math.cos(angle + ROTATE);
-		        	diry = Math.sin(angle + ROTATE);
-		        	angle = angle + ROTATE;
-		        
-		        }
-		        
-		        posx = posx + dirx;
-		        posy = posy + diry;
-		        area.draw(context, (int)posx, (int)posy);
-		        /*
-		        if (action == Event.Action.KEY_PRESSED || action == Event.Action.KEY_RELEASED) {
-		          System.out.println("abort abort !");
-		          context.exit(0);
-		          return;
-		        }*/
-		        System.out.println(event);
-		        /*
-		        Point2D.Float location = event.getLocation();
-		        area.draw(context, location.x, location.y);
-		      	*/
-		      }
+public class Main
+{
+	
+	public static void main(String[] args)
+	{
+		double ROTATION = 0.1;
+			
+		Application.run(Color.BLACK, context ->
+		{
+			Window window = new Window(context);
+			Snake snake = new Snake(window.getWidth()/2, window.getHeight()/2, ROTATION);
+			EventManager eventManager = new EventManager(context, snake);
+			window.setWindow(context);
+		    while (true)
+		    {
+				if (eventManager.manageEvent() == 0)
+					context.exit(1);
+		    	Area.draw(context, (int)snake.getPosx(), (int)snake.getPosy());
+		    }
 		});
 }}
