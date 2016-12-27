@@ -22,6 +22,8 @@ public class EventManager
 		long start_timestamp = System.currentTimeMillis();
 		int LEFT = -1;
 		int RIGHT = 1;
+		int UP = 2;
+		int DOWN = -2;
 		Event.Action keypressed = Event.Action.KEY_PRESSED;
 		event = context.pollEvent();
 		if (event != null)
@@ -50,7 +52,10 @@ public class EventManager
 	{
 		while (System.currentTimeMillis() - start < timestamp)
 			;
-		
 	}
 	
+	public Snake getSnake()
+	{
+		return snake;
+	}
 }

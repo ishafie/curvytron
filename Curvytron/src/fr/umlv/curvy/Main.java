@@ -1,8 +1,5 @@
 package fr.umlv.curvy;
 import java.awt.Color;
-/*import java.awt.geom.Ellipse2D;*/
-/*import java.awt.geom.Point2D;*/
-import java.awt.geom.Rectangle2D;
 
 import fr.umlv.zen5.*;
 
@@ -11,8 +8,9 @@ public class Main
 	
 	public static void main(String[] args)
 	{
+		LinkedLink<Snake> snakeList = new LinkedLink<Snake>();
 		double ROTATION = 0.1;
-			
+		
 		Application.run(Color.BLACK, context ->
 		{
 			Window window = new Window(context);
@@ -21,9 +19,15 @@ public class Main
 			window.setWindow(context);
 		    while (true)
 		    {
+		    	snakeList.add(new Snake(snake.getPosx(), snake.getPosy(), ROTATION));
 				if (eventManager.manageEvent() == 0)
-					context.exit(1);
-		    	Area.draw(context, (int)snake.getPosx(), (int)snake.getPosy());
+					break;
+		    	Area.draw(context, snake);
+		    	if (snake.checkCrash(snakeList, window) == true)
+		    		break ;
 		    }
 		});
+		System.out.println(snakeList.toString());
+		System.out.println("LA FIN");
+		System.exit(1);
 }}
