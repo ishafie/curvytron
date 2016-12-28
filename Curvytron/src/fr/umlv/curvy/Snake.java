@@ -1,7 +1,7 @@
 package fr.umlv.curvy;
 import java.awt.Color;
 
-public class Snake
+public class Snake implements AllSnake
 {
 	protected double dirx;
 	protected double diry;
@@ -14,18 +14,23 @@ public class Snake
 	protected int sizey;
 	protected Color color;
 	
-	public Snake(double posx, double posy, double rotate)
+	public Snake(double posx, double posy, double dirx, double diry, double rotate)
 	{
 		this.posx = posx;
 		this.posy = posy;
 		this.rotate = rotate;
-		dirx = 1;
-		diry = 0;
+		this.dirx = dirx;
+		this.diry = diry;
 		angle = 0;
 		speed = 5;
 		sizex = 10;
 		sizey = 10;
 		color = Color.GREEN;
+	}
+	
+	public double getRotate()
+	{
+		return rotate;
 	}
 	
 	public Color getColor()
@@ -53,6 +58,16 @@ public class Snake
 		return posy;
 	}
 	
+	public double getDirx()
+	{
+		return dirx;
+	}
+	
+	public double getDiry()
+	{
+		return diry;
+	}
+	
 	public void moveForward()
 	{
 		posx = posx + dirx * speed;
@@ -66,12 +81,30 @@ public class Snake
 		angle = angle + rotate * direction;
 	}
 	
-	public boolean checkCrash(LinkedLink<Snake> snakeList, Window w)
+	public boolean checkCrash(Map map, Window w)
 	{
+		int i = 0;
+		int id = 0;
+		
+		System.out.println("Check : " + this);
 		if (outOfBound(w) == true)
 			return true;
-		if (snakeList.search(this))
-			return true;
+		while (i <= 2)
+		{
+			while (id <= 2)
+			{
+				if ((int)posy + id < w.getHeight() && (int)posx + id < w.getWidth() &&
+						(int)posy + i < w.getHeight() && (int)posx + i < w.getWidth() &&
+						(int)posy - id > 0 && (int)posy - i > 0 && (int)posx - id > 0 && (int)posx - i > 0
+						&& map.getCase((int)posx + i, (int)posy + id) == true)
+					return true;
+				if (map.getCase((int)posx - i, (int)posy - id) == true)
+					return true;
+				id++;
+			}
+			id = 0;
+			i++;
+		}
 		return false;
 	}
 	
@@ -80,6 +113,14 @@ public class Snake
 		if (posx >= w.getWidth() || posy >= w.getHeight() || posx < 0 || posy < 0)
 			return true;
 		return false;
+	}
+	
+	/**
+	 * pour interface seulement
+	 */
+	public void moveUporDown(int direction)
+	{
+		return ;
 	}
 	
 	@Override

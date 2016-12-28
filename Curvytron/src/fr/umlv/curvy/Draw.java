@@ -4,9 +4,9 @@ import java.awt.geom.Ellipse2D;
 
 import fr.umlv.zen5.ApplicationContext;
 
-public class Area
-{
-	static public void draw(ApplicationContext context, Snake snake)
+public class Draw {
+
+	static public void draw(ApplicationContext context, AllSnake snake)
 	{
 		Ellipse2D.Float ellipse = new Ellipse2D.Float((int)snake.getPosx() - (int)snake.getSizex(), 
 				(int)snake.getPosy() - (int)snake.getSizey(), snake.getSizex(), snake.getSizey());
@@ -17,4 +17,3 @@ public class Area
 		});
 	}
 }
-

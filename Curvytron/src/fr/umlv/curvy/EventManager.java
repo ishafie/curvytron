@@ -6,24 +6,23 @@ import fr.umlv.zen5.KeyboardKey;
 
 public class EventManager
 {
-	private Snake snake;
 	private ApplicationContext context;
 	private Event event;
 	
-	public EventManager(ApplicationContext context, Snake snake)
+	public EventManager(ApplicationContext context)
 	{
-		this.snake = snake;
 		this.context = context;
 		event = null;
 	}
 	
-	public int manageEvent()
+	public int manageEvent(AllSnake snake)
 	{
+		int bonus = 1;
 		long start_timestamp = System.currentTimeMillis();
 		int LEFT = -1;
 		int RIGHT = 1;
-		int UP = 2;
-		int DOWN = -2;
+		int UP = -2;
+		int DOWN = 2;
 		Event.Action keypressed = Event.Action.KEY_PRESSED;
 		event = context.pollEvent();
 		if (event != null)
@@ -37,9 +36,15 @@ public class EventManager
 				snake.move(RIGHT);
 			else if (event.getAction() == keypressed && event.getKey() == KeyboardKey.SPACE)
 				return (0);
+			else if (event.getAction() == keypressed && event.getKey() == KeyboardKey.A)
+				bonus = 2;
+			else if (bonus == 1 && event.getAction() == keypressed && event.getKey() == KeyboardKey.UP)
+				snake.moveUporDown(UP);
+			else if (bonus == 1 && event.getAction() == keypressed && event.getKey() == KeyboardKey.DOWN)
+				snake.moveUporDown(DOWN);
 		}
 		snake.moveForward();
-		return (1);
+		return (bonus);
 	}
 	
 	/**
@@ -54,8 +59,4 @@ public class EventManager
 			;
 	}
 	
-	public Snake getSnake()
-	{
-		return snake;
-	}
 }
