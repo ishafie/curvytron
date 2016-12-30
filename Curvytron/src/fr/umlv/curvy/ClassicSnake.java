@@ -5,10 +5,10 @@ public class ClassicSnake extends Snake implements AllSnake
 
 	private int direction;
 	
-	public ClassicSnake(double posx, double posy, double dirx, double diry, double rotate)
+	public ClassicSnake(double posx, double posy, double dirx, double diry, double angle, double rotate)
 	{
-		super(posx, posy, dirx, diry, rotate);
-		direction = 0;
+		super(posx, posy, dirx, diry, angle, rotate);
+		direction = (int)dirx;
 	}
 	
 	public void move(int direction)
@@ -18,12 +18,6 @@ public class ClassicSnake extends Snake implements AllSnake
 		this.direction = direction;
 		dirx = direction;
 		diry = 0;
-	}
-	
-	public void moveForward()
-	{
-		posx = posx + dirx * speed;
-		posy = posy + diry * speed;
 	}
 	
 	public void moveUporDown(int direction)

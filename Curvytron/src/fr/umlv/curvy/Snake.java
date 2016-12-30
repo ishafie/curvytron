@@ -14,18 +14,24 @@ public class Snake implements AllSnake
 	protected int sizey;
 	protected Color color;
 	
-	public Snake(double posx, double posy, double dirx, double diry, double rotate)
+	public Snake(double posx, double posy, double dirx, double diry, double angle, double rotate)
 	{
 		this.posx = posx;
 		this.posy = posy;
 		this.rotate = rotate;
+		System.out.println("Dirx = " + dirx);
 		this.dirx = dirx;
 		this.diry = diry;
-		angle = 0;
+		this.angle = angle;
 		speed = 5;
 		sizex = 10;
 		sizey = 10;
 		color = Color.GREEN;
+	}
+	
+	public double getAngle()
+	{
+		return angle;
 	}
 	
 	public double getRotate()
@@ -86,7 +92,7 @@ public class Snake implements AllSnake
 		int i = 0;
 		int id = 0;
 		
-		System.out.println("Check : " + this);
+		/*System.out.println("Check : " + this);*/
 		if (outOfBound(w) == true)
 			return true;
 		while (i <= 2)
@@ -96,9 +102,9 @@ public class Snake implements AllSnake
 				if ((int)posy + id < w.getHeight() && (int)posx + id < w.getWidth() &&
 						(int)posy + i < w.getHeight() && (int)posx + i < w.getWidth() &&
 						(int)posy - id > 0 && (int)posy - i > 0 && (int)posx - id > 0 && (int)posx - i > 0
-						&& map.getCase((int)posx + i, (int)posy + id) == true)
+						&& map.getCase((int)posx + i, (int)posy + id) == 1)
 					return true;
-				if (map.getCase((int)posx - i, (int)posy - id) == true)
+				if (map.getCase((int)posx - i, (int)posy - id) == 1)
 					return true;
 				id++;
 			}
@@ -108,11 +114,38 @@ public class Snake implements AllSnake
 		return false;
 	}
 	
+	public int checkBonus(Map map)
+	{
+		int i = 0;
+		int id = 0;
+		
+		/*System.out.println("Check : " + this);*/
+		while (i <= 2)
+		{
+			while (id <= 2)
+			{
+				if (map.getCase((int)posx + i, (int)posy + id) != 0 && map.getCase((int)posx + i, (int)posy + id) != 1)
+					return map.getCase((int)posx + i, (int)posy + id);
+				if (map.getCase((int)posx - i, (int)posy - id) != 0 && map.getCase((int)posx - i, (int)posy - id) != 1)
+					return map.getCase((int)posx - i, (int)posy - id);
+				id++;
+			}
+			id = 0;
+			i++;
+		}
+		return 0;
+	}
+	
 	public boolean outOfBound(Window w)
 	{
 		if (posx >= w.getWidth() || posy >= w.getHeight() || posx < 0 || posy < 0)
 			return true;
 		return false;
+	}
+	
+	public void increaseSpeed(double increase)
+	{
+		speed *= increase;
 	}
 	
 	/**

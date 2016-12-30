@@ -16,10 +16,13 @@ public interface AllSnake
 	public double getPosy();
 	public double getDirx();
 	public double getDiry();
+	public double getRotate();
+	public double getAngle();
 	public void moveForward();
 	public void move(int direction);
 	public void moveUporDown(int direction);
 	public boolean checkCrash(Map map, Window w);
 	public boolean outOfBound(Window w);
-	public double getRotate();
+	public void increaseSpeed(double increase);
+	public int checkBonus(Map map);
 }

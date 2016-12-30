@@ -38,6 +38,8 @@ public class EventManager
 				return (0);
 			else if (event.getAction() == keypressed && event.getKey() == KeyboardKey.A)
 				bonus = 2;
+			else if (event.getAction() == keypressed && event.getKey() == KeyboardKey.E)
+				bonus = 3;
 			else if (bonus == 1 && event.getAction() == keypressed && event.getKey() == KeyboardKey.UP)
 				snake.moveUporDown(UP);
 			else if (bonus == 1 && event.getAction() == keypressed && event.getKey() == KeyboardKey.DOWN)
