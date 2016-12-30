@@ -25,10 +25,10 @@ public class Bonus {
 				angle = 0;
 			else if (snake.getDirx() == -1)
 				angle = -3;
-			snake = new Snake(snake.getPosx(), snake.getPosy(), snake.getDirx(), snake.getDiry(), angle, snake.getRotate());
+			snake = new Snake(snake.getPosx(), snake.getPosy(), snake.getDirx(), snake.getDiry(), angle, snake.getRotate(), snake.getColor());
 		}
 		else
-			snake = new ClassicSnake(snake.getPosx(), snake.getPosy(), snake.getDirx(), snake.getDiry(), snake.getAngle(), snake.getRotate());
+			snake = new ClassicSnake(snake.getPosx(), snake.getPosy(), snake.getDirx(), snake.getDiry(), snake.getAngle(), snake.getRotate(), snake.getColor());
 		snake.moveForward();
 		return snake;
 	}

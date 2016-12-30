@@ -14,7 +14,7 @@ public class Snake implements AllSnake
 	protected int sizey;
 	protected Color color;
 	
-	public Snake(double posx, double posy, double dirx, double diry, double angle, double rotate)
+	public Snake(double posx, double posy, double dirx, double diry, double angle, double rotate, Color color)
 	{
 		this.posx = posx;
 		this.posy = posy;
@@ -23,10 +23,10 @@ public class Snake implements AllSnake
 		this.dirx = dirx;
 		this.diry = diry;
 		this.angle = angle;
+		this.color = color;
 		speed = 5;
 		sizex = 10;
 		sizey = 10;
-		color = Color.GREEN;
 	}
 	
 	public double getAngle()
@@ -102,9 +102,9 @@ public class Snake implements AllSnake
 				if ((int)posy + id < w.getHeight() && (int)posx + id < w.getWidth() &&
 						(int)posy + i < w.getHeight() && (int)posx + i < w.getWidth() &&
 						(int)posy - id > 0 && (int)posy - i > 0 && (int)posx - id > 0 && (int)posx - i > 0
-						&& map.getCase((int)posx + i, (int)posy + id) == 1)
+						&& (map.getCase((int)posx + i, (int)posy + id) == 1 || map.getCase((int)posx + i, (int)posy + id) == 2))
 					return true;
-				if (map.getCase((int)posx - i, (int)posy - id) == 1)
+				if (map.getCase((int)posx - i, (int)posy - id) == 1 || map.getCase((int)posx - i, (int)posy - id) == 2)
 					return true;
 				id++;
 			}

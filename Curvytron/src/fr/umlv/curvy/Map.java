@@ -102,5 +102,26 @@ public class Map
 		}
 		return new Case(0, 0);
 	}
+	
+	public double calcSurface(int val)
+	{
+		int i = 0;
+		int id = 0;
+		double ret = 0;
+		
+		while (i < col)
+		{
+			while (id < lig)
+			{
+				if (tab[i][id] == val)
+					ret++;
+				id++;
+			}
+			id = 0;
+			i++;
+		}
+		ret = (ret / (lig * col)) * 100;
+		return ret ;
+	}
 }
 

@@ -1,13 +1,15 @@
 package fr.umlv.curvy;
 
+import java.awt.Color;
+
 public class ClassicSnake extends Snake implements AllSnake
 {
 
 	private int direction;
 	
-	public ClassicSnake(double posx, double posy, double dirx, double diry, double angle, double rotate)
+	public ClassicSnake(double posx, double posy, double dirx, double diry, double angle, double rotate, Color color)
 	{
-		super(posx, posy, dirx, diry, angle, rotate);
+		super(posx, posy, dirx, diry, angle, rotate, color);
 		direction = (int)dirx;
 	}
 	

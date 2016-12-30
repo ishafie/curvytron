@@ -17,14 +17,14 @@ public class BonusGenerator {
 	public void genBonus(ApplicationContext context, Draw drawer)
 	{
 		Case c;
-		int randomBonus = ThreadLocalRandom.current().nextInt(2, NB_BONUS + 2);
-		System.out.println("Bonus généré = " + randomBonus);
+		int randomBonus = ThreadLocalRandom.current().nextInt(3, NB_BONUS + 3);
+		System.out.println("Bonus genere = " + randomBonus);
 		
 		c = map.getRandomAvailableCase(map.getCol(), map.getLig(), ThreadLocalRandom.current().nextInt(1, map.getLig()));
-		System.out.println("Case -> " + c);
-		randomBonus = 3; //jusqu'a ajout du bonus classic mode
 		if (randomBonus == 3)
 			drawer.drawSpeedModeIcon(context, c.getX(), c.getY());
+		else if (randomBonus == 4)
+			drawer.drawClassicModeIcon(context, c.getX(), c.getY());
 		map.setZone(c.getX(), c.getY(), 50, 50, randomBonus);
 	}
 }

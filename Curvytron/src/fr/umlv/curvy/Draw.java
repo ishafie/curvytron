@@ -1,7 +1,6 @@
 package fr.umlv.curvy;
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
@@ -18,12 +17,12 @@ public class Draw {
 	
 	public void draw(ApplicationContext context, AllSnake snake)
 	{
-		Ellipse2D.Float ellipse = new Ellipse2D.Float((int)snake.getPosx() - (int)snake.getSizex(), 
+		Rectangle2D.Float rect = new Rectangle2D.Float((int)snake.getPosx() - (int)snake.getSizex(), 
 				(int)snake.getPosy() - (int)snake.getSizey(), snake.getSizex(), snake.getSizey());
 		context.renderFrame(graphics ->
 		{
 			graphics.setColor(snake.getColor());
-			graphics.fill(ellipse);
+			graphics.fill(rect);
 		});
 	}
 	
@@ -40,6 +39,15 @@ public class Draw {
 	public void drawSpeedModeIcon(ApplicationContext context, int posx, int posy)
 	{
 		Image img = new ImageIcon(this.getClass().getResource("/sonic.png")).getImage();
+		context.renderFrame(graphics ->
+		{
+			graphics.drawImage(img, posx, posy, 50, 50, Color.BLACK, null);
+		});
+	}
+	
+	public void drawClassicModeIcon(ApplicationContext context, int posx, int posy)
+	{
+		Image img = new ImageIcon(this.getClass().getResource("/snake.png")).getImage();
 		context.renderFrame(graphics ->
 		{
 			graphics.drawImage(img, posx, posy, 50, 50, Color.BLACK, null);
