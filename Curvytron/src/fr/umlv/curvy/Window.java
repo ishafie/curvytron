@@ -2,6 +2,7 @@ package fr.umlv.curvy;
 
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
+import java.util.Objects;
 
 import fr.umlv.zen5.ApplicationContext;
 import fr.umlv.zen5.ScreenInfo;
@@ -13,6 +14,7 @@ public class Window {
 	
 	public Window(ApplicationContext context)
 	{
+		Objects.requireNonNull(context);
 		this.context = context;
 		screenInfo = context.getScreenInfo();
 	}

@@ -1,5 +1,7 @@
 package fr.umlv.curvy;
 
+import java.util.Objects;
+
 public class Map
 {
 	private int tab[][];
@@ -15,6 +17,11 @@ public class Map
 	 */
 	public Map(int col, int lig, Window window)
 	{
+		if (col < 0 || lig < 0)
+			throw new IllegalArgumentException("Mauvais arguments");
+		Objects.requireNonNull(col);
+		Objects.requireNonNull(lig);
+		Objects.requireNonNull(window);
 		tab = new int[col][lig];
 		this.window = window;
 		this.col = col;
@@ -78,29 +85,21 @@ public class Map
 		}
 	}
 	
-	public Case getRandomAvailableCase(int maxLig, int maxCol, int rand)
+	public void setZone(Case c, int maxCol, int maxLig, int val)
 	{
-		int i = rand;
+		int i = 0;
 		int id = 0;
-		int count = 0;
 		
-		
-		while (count < rand)
+		while (i < maxLig)
 		{
-			id = 0;
 			while (id < maxCol)
 			{
-				if (getCase(i, id) == 0)
-					count++;
-				if (count >= rand)
-					return new Case(i, id);
+				setCase(c.getX() + i, c.getY() + id, val);
 				id++;
 			}
+			id = 0;
 			i++;
-			if (i >= maxLig)
-				i = 0;
 		}
-		return new Case(0, 0);
 	}
 	
 	public double calcSurface(int val)
@@ -120,8 +119,11 @@ public class Map
 			id = 0;
 			i++;
 		}
+		if (lig * col == 0)
+			throw new IllegalStateException("Division par 0");
 		ret = (ret / (lig * col)) * 100;
 		return ret ;
 	}
+
 }
 

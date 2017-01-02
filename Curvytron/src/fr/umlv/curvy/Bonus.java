@@ -1,43 +1,60 @@
 package fr.umlv.curvy;
 
-import fr.umlv.zen5.ApplicationContext;
+import java.awt.Color;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.util.Objects;
 
 public class Bonus {
 
-	static public void activeAndDelete(ApplicationContext context, Draw drawer, Map map, int ret, AllSnake snake)
+	private double speed;
+	private int sizex;
+	private int sizey;
+	private Color color;
+	
+	public Bonus(Color color)
 	{
-		Bonus.activeSimpleBonus(snake, ret);
-    	Bonus.deleteBonus(context, drawer, map, ret, (int)snake.getPosx(), (int)snake.getPosy());
+		Objects.requireNonNull(color);
+		this.color = color;
+		speed = 5;
+		sizex = 10;
+		sizey = 10;
 	}
-	static public void activeSimpleBonus(AllSnake snake, int bonus)
+
+	public Color getColor()
 	{
-		if (bonus == 3)
-			snake.increaseSpeed(1.2);
+		return color;
 	}
 	
-	static public AllSnake changeSnake(AllSnake snake)
+	public int getSizeX()
 	{
-		double angle = 0;
-		
-		if (snake instanceof ClassicSnake)
-		{
-			if (snake.getDirx() == 1)
-				angle = 0;
-			else if (snake.getDirx() == -1)
-				angle = -3;
-			snake = new Snake(snake.getPosx(), snake.getPosy(), snake.getDirx(), snake.getDiry(), angle, snake.getRotate(), snake.getColor());
-		}
-		else
-			snake = new ClassicSnake(snake.getPosx(), snake.getPosy(), snake.getDirx(), snake.getDiry(), snake.getAngle(), snake.getRotate(), snake.getColor());
-		snake.moveForward();
-		return snake;
+		return sizex;
 	}
 	
-	static public void deleteBonus(ApplicationContext context, Draw drawer, Map map, int bonus, int x, int y)
+	public int getSizeY()
 	{
-		Case c = map.getTopLeftCase(x, y, bonus);
-		
-		map.setZone(c.getX(), c.getY(), 50, 50, 0);
-		drawer.hideIcon(context, c.getX(), c.getY(), 50, 50);
+		return sizey;
 	}
+	
+	public double getSpeed()
+	{
+		return speed;
+	}
+	
+	public void increaseSize(double increasing)
+	{
+		double oldspeed = speed - sizex/2;
+		
+		System.out.println("oldspeed = " + oldspeed);
+		sizex *= increasing;
+		sizey *= increasing;
+		if (speed < sizex/2)
+			speed = oldspeed + sizex/2;
+	}
+	
+	public void increaseSpeed(double increasing)
+	{
+		speed *= increasing;
+	}
+	
 }
