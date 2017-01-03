@@ -1,7 +1,6 @@
 package fr.umlv.curvy;
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
@@ -12,12 +11,11 @@ public class Draw {
 
 	static public void draw(ApplicationContext context, AllSnake snake)
 	{
-		Rectangle2D.Float rect = new Rectangle2D.Float((int)snake.getPosx(), 
-				(int)snake.getPosy(), snake.getBonus().getSizeX(), snake.getBonus().getSizeY());
 		context.renderFrame(graphics ->
 		{
 			graphics.setColor(snake.getBonus().getColor());
-			graphics.fill(rect);
+			graphics.fill(snake.getBonus().createShape((int)snake.getPosx(), 
+				(int)snake.getPosy(), snake.getBonus().getSizeX(), snake.getBonus().getSizeY()));
 		});
 	}
 	

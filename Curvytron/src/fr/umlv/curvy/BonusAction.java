@@ -17,7 +17,7 @@ public class BonusAction {
 		if (bonus == nb_player + 3)
 			snake.getBonus().increaseSize(1.2);
 		if (bonus == nb_player + 4)
-			;
+			snake.getBonus().changeShape();
 	}
 	
 	static public AllSnake changeSnake(AllSnake snake)

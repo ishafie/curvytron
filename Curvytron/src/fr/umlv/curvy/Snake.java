@@ -77,17 +77,19 @@ public class Snake implements AllSnake
 		return diry;
 	}
 	
-	public void moveForward()
-	{
-		posx = posx + dirx * bonus.getSpeed();
-		posy = posy + diry * bonus.getSpeed();
-	}
 	
 	public int getId()
 	{
 		return id;
 	}
 	
+	
+	public void moveForward()
+	{
+		posx = posx + dirx * bonus.getSpeed();
+		posy = posy + diry * bonus.getSpeed();
+	}
+
 	public void move(int direction)
 	{
 		dirx = Math.cos(angle + rotate * direction);
@@ -97,7 +99,6 @@ public class Snake implements AllSnake
 	
 	public boolean checkCrash(Map map, Window w, int nb_player)
 	{
-		/*System.out.println("Check : " + this);*/
 		if (outOfBound(w) == true)
 			return true;
 		System.out.println(id);
@@ -111,7 +112,6 @@ public class Snake implements AllSnake
 		int i = 0;
 		int id = 0;
 		
-		/*System.out.println("Check : " + this);*/
 		while (i <= 2)
 		{
 			while (id <= 2)
@@ -143,6 +143,12 @@ public class Snake implements AllSnake
 		return ;
 	}
 	
+	/**
+	 * Permet de définir la 3e case à partir de la tete du serpent comme étant occupée.
+	 * Ajoute une case a head (ArrayList de 3 cases), si la liste fait 3 cases, on envoie la premiere et on la supprime
+	 * de sorte à garder maximum 3 cases.
+	 * @param map, le plateau de jeu 
+	 */
 	public void addHead(Map map)
 	{
 		Case c = new Case((int)posx, (int)posy);

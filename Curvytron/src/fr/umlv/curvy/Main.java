@@ -1,5 +1,6 @@
 package fr.umlv.curvy;
 import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 
 import fr.umlv.zen5.*;
 
@@ -14,8 +15,8 @@ public class Main
 		long endTimestamp = 120000;
 		
 		Map map = new Map((int)window.getWidth(), (int)window.getHeight(), window);
-		AllSnake playerOne = new Snake(1, 10, 10, 1, 0, 0, ROTATION, new Bonus(Color.GREEN));
-		AllSnake playerTwo = new Snake(2, (int)window.getWidth() - 10, (int)window.getHeight() - 10, -1, 0, -3, ROTATION, new Bonus(Color.CYAN));
+		AllSnake playerOne = new Snake(1, 10, 10, 1, 0, 0, ROTATION, new Bonus(Color.GREEN, new Rectangle2D.Float()));
+		AllSnake playerTwo = new Snake(2, (int)window.getWidth() - 10, (int)window.getHeight() - 10, -1, 0, -3, ROTATION, new Bonus(Color.CYAN, new Rectangle2D.Float()));
 		EventManager eventManager = new EventManager(context);
 		BonusGenerator bg = new BonusGenerator(map);
 	    while ((System.currentTimeMillis() - startTimestamp) < endTimestamp)
@@ -65,7 +66,7 @@ public class Main
 		int nb_player = 2;
 		
 		Map map = new Map((int)window.getWidth(), (int)window.getHeight(), window);
-		AllSnake playerOne = new Snake(1, 10, 10, 1, 0, 0, ROTATION, new Bonus(Color.GREEN));
+		AllSnake playerOne = new Snake(1, 10, 10, 1, 0, 0, ROTATION, new Bonus(Color.GREEN, new Rectangle2D.Float()));
 		EventManager eventManager = new EventManager(context);
 		BonusGenerator bg = new BonusGenerator(map);
 	    while (true)
