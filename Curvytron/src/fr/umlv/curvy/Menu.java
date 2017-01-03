@@ -28,12 +28,13 @@ public class Menu {
 	
 	public void createMenu()
 	{
+		Draw.drawBackground(context, (int)window.getWidth(), (int)window.getHeight());
 		Draw.drawMenuText(context, (int)window.getWidth(), (int)window.getHeight());
 		Event event = context.pollOrWaitEvent(100000);
 		
 		if (event.getKey() == KeyboardKey.Y)
 			multiplayer = true;
-		Draw.clearWindow(context, (int)window.getWidth(), (int)window.getHeight() );
+		Draw.drawBackground(context, (int)window.getWidth(), (int)window.getHeight() );
 		
 	}
 }

@@ -9,6 +9,8 @@ import fr.umlv.zen5.ApplicationContext;
 
 public class Draw {
 
+	static private Image bg = new ImageIcon(Draw.class.getResource("/background.png")).getImage();
+	
 	static public void draw(ApplicationContext context, AllSnake snake)
 	{
 		context.renderFrame(graphics ->
@@ -59,6 +61,14 @@ public class Draw {
 		{
 			graphics.setColor(Color.BLACK);
 			graphics.fill(rect);
+		});
+	}
+	
+	static public void drawBackground(ApplicationContext context, int w, int h)
+	{
+		context.renderFrame(graphics ->
+		{
+			graphics.drawImage(bg, 0, 0, w, h, Color.BLACK, null);
 		});
 	}
 	
