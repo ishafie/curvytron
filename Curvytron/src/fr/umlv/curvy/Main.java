@@ -1,5 +1,6 @@
 package fr.umlv.curvy;
 import java.awt.Color;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 import fr.umlv.zen5.*;
@@ -9,14 +10,19 @@ public class Main
 	
 	public static void playGameMulti(ApplicationContext context, Window window, long startTimestamp)
 	{
+		double borderRight = window.getWidth() * 0.0151;
+		double borderBottom = 0.224 * window.getHeight();
+		double borderLeft = window.getWidth() * 0.0131;
+		double borderTop = 0.055 * window.getHeight();
 		double ROTATION = 0.1;
 		int ret = 0;
 		int nb_player = 2;
 		long endTimestamp = 120000;
 		
 		Map map = new Map((int)window.getWidth(), (int)window.getHeight(), window);
-		AllSnake playerOne = new Snake(1, 10, 10, 1, 0, 0, ROTATION, new Bonus(Color.GREEN, new Rectangle2D.Float()));
-		AllSnake playerTwo = new Snake(2, (int)window.getWidth() - 10, (int)window.getHeight() - 10, -1, 0, -3, ROTATION, new Bonus(Color.CYAN, new Rectangle2D.Float()));
+		AllSnake playerOne = new Snake(1, borderLeft + 10, borderTop + 10, 1, 0, 0, ROTATION, new Bonus(Color.BLACK, new Ellipse2D.Float()));
+		/*AllSnake playerTwo = new Snake(2, (int)window.getWidth() - 10, (int)window.getHeight() - 10, -1, 0, -3, ROTATION, new Bonus(Color.CYAN, new Rectangle2D.Float()));*/
+		AllSnake playerTwo = new Snake(2, window.getWidth() - borderRight - 50, window.getHeight() - borderBottom - 50, -1, 0, -3, ROTATION, new Bonus(Color.CYAN, new Ellipse2D.Float()));
 		EventManager eventManager = new EventManager(context);
 		BonusGenerator bg = new BonusGenerator(map);
 	    while ((System.currentTimeMillis() - startTimestamp) < endTimestamp)
@@ -61,12 +67,16 @@ public class Main
 	
 	public static void playGameSolo(ApplicationContext context, Window window, long start_timestamp)
 	{
+		double borderRight = window.getWidth() * 0.0151;
+		double borderBottom = 0.224 * window.getHeight();
+		double borderLeft = window.getWidth() * 0.0131;
+		double borderTop = 0.055 * window.getHeight();
 		double ROTATION = 0.1;
 		int ret = 0;
 		int nb_player = 2;
 		
-		Map map = new Map((int)window.getWidth(), (int)window.getHeight(), window);
-		AllSnake playerOne = new Snake(1, 10, 10, 1, 0, 0, ROTATION, new Bonus(Color.GREEN, new Rectangle2D.Float()));
+		Map map = new Map((int)(window.getWidth() - borderRight), (int)(window.getHeight() - borderBottom), window);
+		AllSnake playerOne = new Snake(1, borderLeft + 10, borderTop + 10, 1, 0, 0, ROTATION, new Bonus(Color.BLACK, new Ellipse2D.Float()));
 		EventManager eventManager = new EventManager(context);
 		BonusGenerator bg = new BonusGenerator(map);
 	    while (true)

@@ -130,7 +130,10 @@ public class Snake implements AllSnake
 	
 	public boolean outOfBound(Window w)
 	{
-		if (posx >= w.getWidth() || posy >= w.getHeight() || posx < 0 || posy < 0)
+		if (posx >= (w.getWidth() - w.getWidth() * 0.021)
+			|| posy >= (w.getHeight() - (0.25 * w.getHeight()))
+			|| posx < w.getWidth() * 0.0101
+			|| posy < 0.055 * w.getHeight())
 			return true;
 		return false;
 	}
@@ -144,9 +147,9 @@ public class Snake implements AllSnake
 	}
 	
 	/**
-	 * Permet de définir la 3e case à partir de la tete du serpent comme étant occupée.
+	 * Permet de dï¿½finir la 3e case ï¿½ partir de la tete du serpent comme ï¿½tant occupï¿½e.
 	 * Ajoute une case a head (ArrayList de 3 cases), si la liste fait 3 cases, on envoie la premiere et on la supprime
-	 * de sorte à garder maximum 3 cases.
+	 * de sorte ï¿½ garder maximum 3 cases.
 	 * @param map, le plateau de jeu 
 	 */
 	public void addHead(Map map)

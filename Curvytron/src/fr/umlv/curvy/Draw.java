@@ -18,6 +18,8 @@ public class Draw {
 			graphics.setColor(snake.getBonus().getColor());
 			graphics.fill(snake.getBonus().createShape((int)snake.getPosx(), 
 				(int)snake.getPosy(), snake.getBonus().getSizeX(), snake.getBonus().getSizeY()));
+			graphics.fill(snake.getBonus().createShape((int)snake.getPosx(), 
+					(int)snake.getPosy() + 7, snake.getBonus().getSizeX(), snake.getBonus().getSizeY()));
 		});
 	}
 	
@@ -59,7 +61,7 @@ public class Draw {
 		Rectangle2D.Float rect = new Rectangle2D.Float(posx, posy, w, h);
 		context.renderFrame(graphics ->
 		{
-			graphics.setColor(Color.BLACK);
+			graphics.setColor(Color.GREEN);
 			graphics.fill(rect);
 		});
 	}

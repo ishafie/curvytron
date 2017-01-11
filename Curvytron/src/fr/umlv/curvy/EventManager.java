@@ -24,10 +24,10 @@ public class EventManager
 		long startTime = System.currentTimeMillis();
 		long currentTime = 0;
 		
-		eventOne = context.pollOrWaitEvent(40);
-		currentTime = System.currentTimeMillis();
+		eventOne = context.pollOrWaitEvent(25);
+		/*currentTime = System.currentTimeMillis();
 		if (currentTime - startTime < 40)
-			waitTime(System.currentTimeMillis(), 40 - (currentTime - startTime));
+			waitTime(System.currentTimeMillis(), 40 - (currentTime - startTime));*/
 		if (eventOne != null)
 			ret = actionEvent(player, id);
 		player.moveForward();
@@ -99,7 +99,6 @@ public class EventManager
 	 */
 	public void waitTime(long start, long timestamp)
 	{
-		System.out.println(timestamp);
 		while (timestamp > 0 && System.currentTimeMillis() - start < timestamp)
 		{
 			;

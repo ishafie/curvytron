@@ -19,8 +19,7 @@ public class BonusGenerator {
 	public void genBonus(ApplicationContext context, int nb_player)
 	{
 		int randomBonus = ThreadLocalRandom.current().nextInt(nb_player + 1, NB_BONUS + nb_player + 1);
-		System.out.println("Bonus genere = " + randomBonus);
-		Case c = new Case(ThreadLocalRandom.current().nextInt(1, map.getCol()), ThreadLocalRandom.current().nextInt(1, map.getLig()));		
+		Case c = new Case(ThreadLocalRandom.current().nextInt(1, map.getCol() - 50), ThreadLocalRandom.current().nextInt(1, map.getLig() - 50));
 		if (randomBonus == nb_player + 1)
 			Draw.drawIcon(context, c.getX(), c.getY(), "/sonic.png");
 		else if (randomBonus == nb_player + 2)
