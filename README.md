@@ -8,11 +8,21 @@ Jeu du snake type curvytron
 
 Ce projet de curvytron est codé en Java, et est une version jouable solo, implémentable
 multijoueur. 
+Une version multijoueur y est implémenté, mais ne fonctionne que très mal
+(dû à la gestion des evenements de la librarie Zen5)
 
 ## API
 
+L'interface d'affichage utilise la librairie Zen5.
+La gestion d'événements passe aussi par la librarie Zen5.
 
+Les serpents sont implémentés grâce à une interface AllSnake, qui permet 
+de passer d'un serpent type curvytron à un serpent type snake classique.
 
+La gestion de l'affichage se trouve dans la classe Window
+
+Pour plus d'informations, se référer à la Javadoc fourni dans le dossier /CurvyTron/doc
+(Javadoc re-générable au besoin).
 
 
 ## Librairies annexes
