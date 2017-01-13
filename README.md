@@ -8,7 +8,7 @@ Jeu du snake type curvytron
 
 Ce projet de curvytron est codé en Java, et est une version jouable solo, implémentable
 multijoueur. 
-Une version multijoueur y est implémenté, mais ne fonctionne que très mal
+Une version multijoueur y est implémenté et à améliorer niveau fluidité.
 (dû à la gestion des evenements de la librarie Zen5)
 
 ## API
