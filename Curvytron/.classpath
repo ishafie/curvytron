@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="/home/1ini3/ishafie/workspace-light/PROJET/zen5.jar"/>
-	<classpathentry kind="lib" path="/home/1ini3/ishafie/workspace-light/PROJET/zen5-src.zip"/>
+	<classpathentry kind="lib" path="/home/thomas/workspace/CurvyTron/zen5.jar"/>
+	<classpathentry kind="lib" path="/home/thomas/workspace/CurvyTron/zen5-src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

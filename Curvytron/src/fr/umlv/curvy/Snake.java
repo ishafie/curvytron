@@ -14,11 +14,29 @@ public class Snake implements AllSnake
 	protected ArrayList<Case> head;
 	protected Bonus bonus;
 	
+	/**
+	 * Constructeur de la classe snake.
+	 * @param snake le snake du joueur.
+	 * @see Snake#Snake(int id, double posx, double posy, double dirx, double diry, double angle, double rotate, Bonus bonus)
+	 */
 	public Snake(AllSnake snake)
 	{
 		this(snake.getId(), snake.getPosx(), snake.getPosy(), snake.getDirx(), snake.getDiry(), snake.getAngle(), snake.getRotate(), snake.getBonus());
 	}
 	
+	/**
+	 * Constructeur de la classe snake.
+	 * Initialise aussi la tête du snake dans une arrayList.
+	 * @param id id du joueur.
+	 * @param posx position initiale en x du snake.
+	 * @param posy position initiale en y du snake.
+	 * @param dirx direction initiale en x du snake.
+	 * @param diry direction initiale en y du snake.
+	 * @param angle angle de la direction du snake (en rad)
+	 * @param rotate rotation de l'angle.
+	 * @param bonus bonus du snake.
+	 * 
+	 */
 	public Snake(int id, double posx, double posy, double dirx, double diry, double angle, double rotate, Bonus bonus)
 	{
 		Objects.requireNonNull(id);
@@ -42,54 +60,91 @@ public class Snake implements AllSnake
 		head = new ArrayList<Case>();
 	}
 	
+	/**
+	 * Retourne le bonus
+	 * @return bonus, le bonus
+	 */
 	public Bonus getBonus()
 	{
 		return bonus;
 	}
 	
+	/**
+	 * Retourne la valeur de l'angle.
+	 * @return angle, la valeur de l'angle.
+	 */
 	public double getAngle()
 	{
 		return angle;
 	}
 	
+	/**
+	 * Retourne la rotation.
+	 * @return rotate, la rotation.
+	 */
 	public double getRotate()
 	{
 		return rotate;
 	}
 	
+	/**
+	 * Retourne la coordonee x de la position.
+	 * @return posx, la coordonnee x de la position.
+	 */
 	public double getPosx()
 	{
 		return posx;
 	}
 	
+	/**
+	 * Retourne la coordonnee y de la position.
+	 * @return posy, la coordonnee y de la position.
+	 */
 	public double getPosy()
 	{
 		return posy;
 	}
 	
+	/**
+	 * Retourne la coordonnee x de la direction.
+	 * @return dirx, la coordonnee x de la direction.
+	 */
 	public double getDirx()
 	{
 		return dirx;
 	}
-	
+	/**
+	 * Retourne la coordonnee y de la direction
+	 * @return diry, la coordonnee y de la direction.
+	 */
 	public double getDiry()
 	{
 		return diry;
 	}
 	
-	
+	/**
+	 * Retourne l'id du snake 
+	 * @return id, l'id du snake
+	 */
 	public int getId()
 	{
 		return id;
 	}
 	
-	
+	/**
+	 * Deplace le serpent suivant les valeurs de direction qui lui
+	 * sont propre.
+	 */
 	public void moveForward()
 	{
 		posx = posx + dirx * bonus.getSpeed();
 		posy = posy + diry * bonus.getSpeed();
 	}
-
+	
+	/**
+	 * Deplace le serpent dans la direction donnee en parametre
+	 * @param direction la direction dans laquelle le serpent doit aller.
+	 */
 	public void move(int direction)
 	{
 		dirx = Math.cos(angle + rotate * direction);
@@ -97,6 +152,13 @@ public class Snake implements AllSnake
 		angle = angle + rotate * direction;
 	}
 	
+	/**
+	 * Verifie si un serpent est entre en collision avec un bord ou  un autre serpent.
+	 * @param map la map.
+	 * @param w la Window. 
+	 * @param nb_player le nombre de joueurs.
+	 * @return boolean true si le serpent est entre en collision, false sinon.
+	 */
 	public boolean checkCrash(Map map, Window w, int nb_player)
 	{
 		if (outOfBound(w) == true)
@@ -106,7 +168,12 @@ public class Snake implements AllSnake
 			return true;
 		return false;
 	}
-	
+
+	/**
+	 * Retourne un bonus si le snake passe dessus.
+	 * @param map la map du jeu.
+	 * @return le bonus, ou 0 si aucun bonus.
+	 */
 	public int checkBonus(Map map)
 	{
 		int i = 0;
@@ -128,6 +195,12 @@ public class Snake implements AllSnake
 		return 0;
 	}
 	
+	/**
+	 * Verifie si la position du snake est encore dans la zone de jeu, ou si il 
+	 * en est sorti.
+	 * @param w fenetre d'affichage
+	 * @return true si il est en dehors, false sinon.
+	 */
 	public boolean outOfBound(Window w)
 	{
 		if (posx >= (w.getWidth() - w.getWidth() * 0.021)
@@ -139,7 +212,7 @@ public class Snake implements AllSnake
 	}
 	
 	/**
-	 * pour interface seulement
+	 *  pour interface seulement
 	 */
 	public void moveUporDown(int direction)
 	{

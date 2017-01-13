@@ -1,7 +1,7 @@
 package fr.umlv.curvy;
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
+
 
 import fr.umlv.zen5.*;
 
@@ -118,4 +118,5 @@ public class Main
 		});	
 		System.out.println("LA FIN");
 		System.exit(1);
-}}
+	}	
+}

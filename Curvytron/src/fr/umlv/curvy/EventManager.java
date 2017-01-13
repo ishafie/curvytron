@@ -10,7 +10,11 @@ public class EventManager
 {
 	private ApplicationContext context;
 	private Event eventOne;
-
+	
+	/**
+	 * Constructeur de la classe EventManager.
+	 * @param context context de l'application.
+	 */
 	public EventManager(ApplicationContext context)
 	{
 		Objects.requireNonNull(context);
@@ -18,12 +22,20 @@ public class EventManager
 		eventOne = null;
 	}
 	
+	/**
+	 * Applique l'evenement a un snake, qui correspond ici au snake du joueur.
+	 * @param player le snake du joueur.
+	 * @param id id du joueur
+	 * @return 1 en cas de reussite.
+	 * @see EventManager#actionEvent(AllSnake player, int id)
+	 */
 	public int manageEvent(AllSnake player, int id)
 	{
 		int ret = 1;
+		/*
 		long startTime = System.currentTimeMillis();
 		long currentTime = 0;
-		
+		*/
 		eventOne = context.pollOrWaitEvent(25);
 		/*currentTime = System.currentTimeMillis();
 		if (currentTime - startTime < 40)
@@ -34,7 +46,13 @@ public class EventManager
 		return (ret);
 	}
 	
-	
+	/**
+	 * Applique l'action ou l'evenement au joueur dont l'id est passe en paramtre.
+	 * @param player le snake du joueur.
+	 * @param id id du joueur.
+	 * @return 1, en cas de reussite.
+	 * @see EventManager#manageEvent(AllSnake player, int id)
+	 */
 	public int actionEvent(AllSnake player, int id)
 	{
 		int bonus = 1;
@@ -50,6 +68,13 @@ public class EventManager
 		return (bonus);
 	}
 	
+	/**
+	 * Deplacement du snake du player two. N'est utilise seulement dans le cas ou il y a 
+	 * le mode multijoueur active.
+	 * @param player le snake du joueur.
+	 * @return 1, en cas de mouvement, 0 si la touche "space" est enfonce.
+	 * @see EventManager#movesetPlayerOne(AllSnake player)
+	 */
 	public int movesetPlayerTwo(AllSnake player)
 	{
 		int LEFT = -1;
@@ -71,6 +96,12 @@ public class EventManager
 		return (1);
 	}
 	
+	/**
+	 * Deplacement du snake du joueur One. Suivant l'etat des touches de controle du snake, deplace le snake dans la direction
+	 * dans laquelle il doit aller.
+	 * @param player le snake du joueur.
+	 * @return 1, en cas de mouvement, 0 si la touche "space" est enfonce.
+	 */
 	public int movesetPlayerOne(AllSnake player)
 	{
 		int LEFT = -1;
@@ -91,11 +122,11 @@ public class EventManager
 			player.moveUporDown(DOWN);
 		return (1);
 	}
+
 	/**
-	 * wait timestamp milliseconds
-	 * 
-	 * long timestamp, defines time to wait in milliseconds
-	 * long start, defines start time (timestamp)
+	 * Attends le temps d'une duree timestamp a partir du moment start.
+	 * @param start debut du temps.
+	 * @param timestamp durée
 	 */
 	public void waitTime(long start, long timestamp)
 	{
@@ -105,6 +136,10 @@ public class EventManager
 		}
 	}
 	
+	/**
+	 * Envoie les evenements tant qu'ils sont presents.
+	 * @param context context de l'application.
+	 */
 	public void flushEvent(ApplicationContext context)
 	{
 		while (context.pollEvent() != null)

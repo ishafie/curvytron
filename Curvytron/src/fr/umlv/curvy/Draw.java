@@ -8,9 +8,14 @@ import javax.swing.ImageIcon;
 import fr.umlv.zen5.ApplicationContext;
 
 public class Draw {
-
+	private final static Color transparence = new Color(0,0,0,0);
 	static private Image bg = new ImageIcon(Draw.class.getResource("/background.png")).getImage();
 	
+	/**
+	 * Constructeur de la classe Draw
+	 * @param context le context de l'application.
+	 * @param snake le snake actuel.
+	 */
 	static public void draw(ApplicationContext context, AllSnake snake)
 	{
 		context.renderFrame(graphics ->
@@ -23,6 +28,13 @@ public class Draw {
 		});
 	}
 	
+	/**
+	 * Affichage du temps suivant le temps timestamp
+	 * @param context le contexte de l'application
+	 * @param width la largeur
+	 * @param height la hauteur
+	 * @param timestamp temps
+	 */
 	static public void drawTime(ApplicationContext context, int width, int height, long timestamp)
 	{		
 		Rectangle2D.Float rect = new Rectangle2D.Float(width / 2 - 50, height / 50 - 15, 90, 25);
@@ -36,6 +48,12 @@ public class Draw {
 		});
 	}
 	
+	/**
+	 * Affichage du menu de lancement, des commandes et de l'activation de l'option multijoueur.
+	 * @param context context de l'application
+	 * @param width taille de la fenetre (largeur)
+	 * @param height taille de la fenetre (hauteur)
+	 */
 	static public void drawMenuText(ApplicationContext context, int width, int height)
 	{
 		context.renderFrame(graphics -> 
@@ -46,6 +64,12 @@ public class Draw {
 		});
 	}
 	
+	/**
+	 * Efface la fenetre, et affiche un fond noir.
+	 * @param context contexte de l'application.
+	 * @param width taille de la fenetre (largeur).
+	 * @param height taille de la fenetre (hauteur).
+	 */
 	static public void clearWindow(ApplicationContext context, int width, int height)
 	{
 		Rectangle2D.Float rect = new Rectangle2D.Float(0, 0, width, height);
@@ -56,16 +80,30 @@ public class Draw {
 		});
 	}
 	
+	/**
+	 * Efface l'image du bonus sur l'ecran.
+	 * @param context context de l'application
+	 * @param posx coordonee en x du bonus.
+	 * @param posy coordonne en y du bonus.
+	 * @param w taille du bonus (largeur).
+	 * @param h taille du bonus (hauteur).
+	 */
 	static public void hideIcon(ApplicationContext context, int posx, int posy, int w, int h)
 	{
 		Rectangle2D.Float rect = new Rectangle2D.Float(posx, posy, w, h);
 		context.renderFrame(graphics ->
 		{
-			graphics.setColor(Color.GREEN);
+			graphics.setColor(new Color(110,129,1,255));
 			graphics.fill(rect);
 		});
 	}
 	
+	/**
+	 * Affiche le background sur l'ecran. 
+	 * @param context context de l'application.
+	 * @param w taille de la fenetre (largeur).
+	 * @param h taille de la fenetre (hauteur).
+	 */
 	static public void drawBackground(ApplicationContext context, int w, int h)
 	{
 		context.renderFrame(graphics ->
@@ -74,12 +112,19 @@ public class Draw {
 		});
 	}
 	
+	/**
+	 * Affiche le bonus ou l'icone dont le chemin est passe en parametre
+	 * @param context context de l'application.
+	 * @param posx la coordonee en x du point en haut a gauche.
+	 * @param posy la coordonee en y du point en haut a gauche.
+	 * @param path le path de l'image.
+	 */
 	static public void drawIcon(ApplicationContext context, int posx, int posy, String path)
 	{
 		Image img = new ImageIcon(Draw.class.getResource(path)).getImage();
 		context.renderFrame(graphics ->
 		{
-			graphics.drawImage(img, posx, posy, 50, 50, Color.BLACK, null);
+			graphics.drawImage(img, posx, posy, 50, 50, transparence, null);
 		});
 	}
 	

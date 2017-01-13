@@ -12,6 +12,11 @@ public class Menu {
 	private boolean multiplayer;
 	private Window window;
 	
+	/**
+	 * Constructeur de la classe Menu. A l'initialisation, le multiplayer est defini false.
+	 * @param context context de l'application.
+	 * @param window la fenetre de l'application.
+	 */
 	public Menu(ApplicationContext context, Window window)
 	{
 		Objects.requireNonNull(context);
@@ -21,11 +26,18 @@ public class Menu {
 		this.window = window;
 	}
 	
+	/**
+	 * Retourne l'etat du mode multijoueur
+	 * @return true si le mutlijoueur est actif, false sinon.
+	 */
 	public boolean getMultiplayer()
 	{
 		return multiplayer;
 	}
 	
+	/**
+	 * Cree le menu, l'interface et affiche les differents elements de la fenetre au demarage.
+	 */
 	public void createMenu()
 	{
 		Draw.drawBackground(context, (int)window.getWidth(), (int)window.getHeight());
